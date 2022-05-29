@@ -1,8 +1,5 @@
 @extends('Backend.master')
-@push('css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
-@endpush
+@section('header_title','Dashboard')
 
 @section('content')
     <div class="p-5 mb-4 bg-light rounded-3">
@@ -11,7 +8,7 @@
                 <div class="col">
                     <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
                         <div class="card-body">
-                            <h5 class="card-header">Total Applicant</h5>
+                            <h5 class="card-header">Total Employee</h5>
                             <center><h1>20</h1></center>
                         </div>
                     </div>
@@ -42,17 +39,15 @@
                 </div>
             </div>
         </div>
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold">Daily Task Manager Application</h1>
+            <p class="col-md-8 fs-4">This is a simple task manager app is used for maintaining daily tasks.The front page(task) consists of a list of tasks where users able to create, update and delete their tasks and filter their task by date also.For better experience you can use this app by clicking next button.</p>
+            <a href=""> <button type="button" class="btn btn-outline-primary">Next Page <i class="fa fa-angle-double-right"></i></button></a>
+        </div>
     </div>
 @endsection
 
+
 @push('script')
-    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#example').DataTable();
-        });
-    </script>
 
 @endpush
