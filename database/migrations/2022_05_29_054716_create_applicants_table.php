@@ -6,21 +6,22 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
 
-    public function up() {
+    public function up()
+    {
         Schema::create('applicants', function (Blueprint $table) {
             $table->id();
             $table->enum('zone', getZones());
             $table->string('zone_code');
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->string('institute');
             $table->string('department');
             $table->string('applicant_name');
             $table->string('primary_mobile');
-            $table->string('mobile_02');
+            $table->string('mobile_02')->nullable();
             $table->enum('gender', getGenders());
             $table->enum('religion', getReligions());
             $table->enum('blood_group', getBloodGroups());
-            $table->string('nid');
+            $table->string('nid')->nullable();
             $table->enum('disabilities', getDisabilities())->default(getDisabilities()[0]);
             $table->string('father_name');
             $table->enum('father_living_status', getLivingStatuses())->default(getLivingStatuses()[0]);
@@ -29,11 +30,11 @@ return new class extends Migration {
             $table->enum('mother_living_status', getLivingStatuses())->default(getLivingStatuses()[0]);
             $table->enum('mother_disability', getDisabilities())->default(getDisabilities()[0]);
             $table->integer('other_disability')->default(0);
-            $table->integer('guardian_number');
+            $table->integer('guardian_number')->nullable();
             $table->string('thana_police_station');
             $table->string('district');
-            $table->string('school');
-            $table->string('college');
+            $table->string('school')->nullable();
+            $table->string('college')->nullable();
             $table->integer('monthly_income');
             $table->integer('monthly_expense');
             $table->integer('family_asset');
@@ -45,10 +46,10 @@ return new class extends Migration {
             $table->integer('class1to8');
             $table->integer('class9to12_hifj');
             $table->integer('undergrad');
-            $table->string('justification');
-            $table->string('image');
+            $table->string('justification')->nullable();
+            $table->string('image')->nullable();
             $table->boolean('is_processed')->default(false);
-            $table->string('total_mark')->default(0);
+            $table->string('total_mark')->nullable();
             $table->timestamps();
         });
     }
@@ -58,7 +59,8 @@ return new class extends Migration {
      *
      * @return void
      */
-    public function down() {
+    public function down()
+    {
         Schema::dropIfExists('applicants');
     }
 };
