@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ApplicantExport;
+use App\Imports\ApplicantImport;
 use App\Models\Applicant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ApplicantController extends Controller
 {
@@ -80,7 +84,27 @@ class ApplicantController extends Controller
         ];
         return view('add_applicant', compact('data'));
     }
+    public function importApplicant(Request $request)
+    {
+        $request->validate([
+            'file'=> 'required','mimes:csv'
+        ]);
+        $file = $request->file('file');
+//        dd($file);
+//      Excel::import(new ApplicantImport, $file);
+        $import=new ApplicantImport;
+        $import->import($file);
+        dd($import->errors());
 
+        return back()->withStatus('Excel File imported successfully');
+    }
+
+    public function exportApplicant()
+    {
+//        $file= 'gsp_'.Carbon::now();
+       return Excel::download(new ApplicantExport,  'gsp.xlsx');
+
+    }
     public function show(Applicant $applicant)
     {
         return view('show', compact('applicant'));
