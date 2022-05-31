@@ -8,7 +8,7 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('applicant.store') }}" method="POST">
+            <form action="{{ route('applicant.store') }}" method="POST" accept-charset="utf-8">
                 @csrf
                 <div class="row">
                     <!-- applicant_name -->

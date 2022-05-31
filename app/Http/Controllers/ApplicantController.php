@@ -17,8 +17,6 @@ class ApplicantController extends Controller
     public function index()
     {
         $data = Applicant::all();
-        // dd($data);
-        // dd('aaaaaaaaaaaa', $item, $total_mark);
         return view('applicants', compact('data'));
     }
 
