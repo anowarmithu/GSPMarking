@@ -65,15 +65,15 @@ class HomeController extends Controller
                 $parent_living_mark = 0;
                 if ('Died' === $item->mother_living_status) {
                     $parent_living_mark += 3;
-                } else if ('Alive' !== $item->mother_living_status && 'Died' !== $item->mother_living_status) {
+                } else if ('Alive' !== $item->mother_living_status) {
                     $parent_living_mark += 5;
                 }
                 if ('Died' === $item->father_living_status) {
                     $parent_living_mark += 7;
-                } else if ('Alive' !== $item->father_living_status && 'Died' !== $item->father_living_status) {
+                } else if ('Alive' !== $item->father_living_status) {
                     $parent_living_mark += 3;
                 }
-                $total_mark += $parent_living_mark > 10 ? 10 : $parent_living_mark;
+                $total_mark += min($parent_living_mark, 10);
                 //Dependents
                 $dependent_mark = 0;
                 if ($item->older_age > 0) {
@@ -88,7 +88,7 @@ class HomeController extends Controller
                 if ($item->undergrad > 0) {
                     $dependent_mark += 3 * $item->undergrad;
                 }
-                $total_mark += $dependent_mark > 10 ? 10 : $dependent_mark;
+                $total_mark += min($dependent_mark, 10);
                 //Disability
                 $disability_mark = 0;
                 if ('None' !== $item->disabilities) {
@@ -103,7 +103,7 @@ class HomeController extends Controller
                 if ($item->other_disability > 0) {
                     $disability_mark += 5 * $item->other_disability;
                 }
-                $total_mark += $disability_mark > 10 ? 10 : $disability_mark;
+                $total_mark += min($disability_mark, 10);
                 //Asset Value
                 if ($item->family_asset <= 99_999) {
                     $total_mark += 10;
