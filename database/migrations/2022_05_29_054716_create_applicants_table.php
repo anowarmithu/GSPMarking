@@ -9,7 +9,7 @@ return new class extends Migration {
     public function up() {
         Schema::create('applicants', function (Blueprint $table) {
             $table->id();
-            $table->enum('zone', ['Dhaka', 'Chattogram', 'Rajshahi', 'Khulna', 'Rangpur', 'Barishal', 'Sylhet', 'Mymensingh', 'Cumilla', 'Kushtia', ' Nursing', 'Intermediate', 'Other']);
+            $table->enum('zone', getZones());
             $table->string('zone_code');
             $table->string('email');
             $table->string('institute');
@@ -17,16 +17,16 @@ return new class extends Migration {
             $table->string('applicant_name');
             $table->string('primary_mobile');
             $table->string('mobile_02');
-            $table->enum('gender', ['Male', 'Female', 'Other']);
-            $table->enum('religion', ['Islam', 'Hinduism', 'Buddhism', 'Christianity', 'Other']);
-            $table->enum('blood_group', ['Unknown', 'A+', 'B+', 'O+', 'AB+', 'A-', 'B-', 'O-', 'AB-']);
+            $table->enum('gender', getGenders());
+            $table->enum('religion', getReligions());
+            $table->enum('blood_group', getBloodGroups());
             $table->string('nid');
             $table->enum('disabilities', getDisabilities())->default(getDisabilities()[0]);
             $table->string('father_name');
-            $table->enum('father_living_status', getLivingStatus())->default(getLivingStatus()[0]);
+            $table->enum('father_living_status', getLivingStatuses())->default(getLivingStatuses()[0]);
             $table->enum('father_disability', getDisabilities())->default(getDisabilities()[0]);
             $table->string('mother_name');
-            $table->enum('mother_living_status', getLivingStatus())->default(getLivingStatus()[0]);
+            $table->enum('mother_living_status', getLivingStatuses())->default(getLivingStatuses()[0]);
             $table->enum('mother_disability', getDisabilities())->default(getDisabilities()[0]);
             $table->integer('other_disability')->default(0);
             $table->integer('guardian_number');

@@ -1,13 +1,17 @@
 @extends('Backend.master')
+@section('title','Applicants | GSP')
 @push('css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
 @endpush
 @section('top_button')
     <a href="{{route('applicant.create')}}" class="btn btn-sm btn-warning"><i class="fa fa-plus"></i> Add New Applicant</a>
+    <a class="btn btn-sm btn-primary" href="{{ route('process') }}"><i class="fa fa-cogs"></i> Process Result</a>
 @endsection
 @section('content')
     <div class="justify-content-center">
+
+
             <div class="card">
                <div class="card-body">
                    <table id="example" class="table table-striped table-bordered my-5" >
@@ -36,7 +40,7 @@
                                <td>{{ $item->department }}</td>
                                <td>{{ $item->total_mark }}</td>
                                <td>
-                                   <a href="" class="btn btn-primary">View</a>
+                                   <a href="{{ route('applicant.show',$item) }}" class="btn btn-primary">View</a>
                                </td>
                            </tr>
                        @endforeach
@@ -55,11 +59,10 @@
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+
 
     <script>
         $(document).ready(function () {
