@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Applicant;
 use Illuminate\Support\Facades\DB;
 
-class HomeController extends Controller {
+class HomeController extends Controller
+{
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('auth');
     }
 
@@ -20,7 +22,8 @@ class HomeController extends Controller {
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index() {
+    public function index()
+    {
 
         $data = Applicant::selectRaw("
         COUNT(*) AS total_application,
@@ -31,7 +34,8 @@ class HomeController extends Controller {
         return view('home', compact('data'));
     }
 
-    public function process() {
+    public function process()
+    {
         $items = Applicant::where('is_processed', 0)->get();
         if (!count($items)) {
             return redirect(route('applicant.index'))->with('message', 'Nothing to process.');
@@ -44,17 +48,18 @@ class HomeController extends Controller {
                     $total_mark += 5;
                 }
                 //Personal Expense
-                $expense_diff = $item->monthly_expense - $item->monthly_income;
-                if ($expense_diff >= 201 && $expense_diff <= 500) {
-                    $total_mark++;
-                } else if ($expense_diff <= 800) {
-                    $total_mark += 2;
-                } else if ($expense_diff <= 1000) {
-                    $total_mark += 3;
-                } else if ($expense_diff <= 1500) {
-                    $total_mark += 4;
-                } else {
+                $monthlyExpense = min($item->monthly_expense, 'Female' === $item->gender ? getFemaleMonthlyExpense() : getMaleMonthlyExpense());
+                $expense_diff = $monthlyExpense - $item->monthly_income;
+                if ($expense_diff > 1500) {
                     $total_mark += 5;
+                } else if ($expense_diff > 1000) {
+                    $total_mark += 4;
+                } else if ($expense_diff > 800) {
+                    $total_mark += 3;
+                } else if ($expense_diff > 500) {
+                    $total_mark += 2;
+                } else if ($expense_diff > 200) {
+                    $total_mark++;
                 }
                 //Parents living status
                 $parent_living_mark = 0;
@@ -131,11 +136,10 @@ class HomeController extends Controller {
                 } else if ($item->family_monthly_income <= 29_999) {
                     $total_mark += 1;
                 }
-                //SSC Result
-                $total_mark += 0.8 * $item->ssc_result;
                 //HSC Result
                 $total_mark += 1.2 * $item->hsc_result;
-
+                //SSC Result
+                $total_mark += 0.8 * $item->ssc_result;
                 //Update Result
                 $item->total_mark = $total_mark;
                 $item->is_processed = 1;
