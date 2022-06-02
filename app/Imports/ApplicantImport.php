@@ -4,15 +4,15 @@ namespace App\Imports;
 
 use App\Models\Applicant;
 use Illuminate\Support\Carbon;
+use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Concerns\Importable;
-use Maatwebsite\Excel\Concerns\SkipsErrors;
-use Maatwebsite\Excel\Concerns\SkipsOnError;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithValidation;
 
-class ApplicantImport implements ToModel,WithHeadingRow,SkipsOnError
+class ApplicantImport implements ToModel,WithValidation ,WithHeadingRow
 {
-    use Importable,SkipsErrors;
+    use Importable;
     /**
     * @param array $row
     *
@@ -64,5 +64,18 @@ class ApplicantImport implements ToModel,WithHeadingRow,SkipsOnError
             'total_mark' =>$row['total_mark'],
             'created_at'=>Carbon::now()
         ]);
+    }
+
+    public function rules():array
+    {
+       return[
+           'zone_code' => Rule::unique('applicants','zone_code')
+       ];
+    }
+    public function customValidationMessages():array
+    {
+        return [
+            'zone_code.unique' => 'Duplicate entry',
+        ];
     }
 }

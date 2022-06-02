@@ -29,4 +29,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('dashboard');
     Route::post('applicant-import', [ApplicantController::class,'importApplicant'])->name('applicant_import');
     Route::get('application-export',[ApplicantController::class,'exportApplicant'])->name('applicant_export');
+    Route::post('applicant-delete',[ApplicantController::class,'deleteAll'])->name('applicant_all.delete');
 });

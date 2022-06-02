@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->id();
             $table->enum('zone', getZones());
             $table->string('zone_code');
-            $table->string('email')->nullable();
+            $table->string('email')->nullable()->unique();
             $table->string('institute');
             $table->string('department');
             $table->string('applicant_name');

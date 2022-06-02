@@ -88,11 +88,14 @@ class ApplicantController extends Controller
             'file'=> 'required','mimes:csv'
         ]);
         $file = $request->file('file');
-//        dd($file);
-//      Excel::import(new ApplicantImport, $file);
-        $import=new ApplicantImport;
-        $import->import($file);
-        dd($import->errors());
+
+       try {
+            $import=new ApplicantImport;
+            $import->import($file);
+        }
+        catch(\Exception $e){
+            return back()->withErrors($e->getMessage());
+        }
 
         return back()->withStatus('Excel File imported successfully');
     }
@@ -117,7 +120,10 @@ class ApplicantController extends Controller
     {
         //
     }
-
+    public function deleteAll(){
+        $data = Applicant::query()->delete();
+        return back()->withStatus('All applicant delete successfully');
+    }
     public function destroy(Applicant $applicant)
     {
         //
