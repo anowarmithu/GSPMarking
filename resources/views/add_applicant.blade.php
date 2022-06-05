@@ -22,7 +22,7 @@
                     </div>
                     <!-- primary_mobile -->
                     <div class="form-group col-md-3">
-                        <label for="primary_mobile">Mobile</label>
+                        <label for="primary_mobile">Primary Mobile</label>
                         <input type="number" class="form-control" id="primary_mobile" name="primary_mobile"
                                placeholder="primary mobile" value="{{ old('primary_mobile') }}">
                         @if($errors->has('primary_mobile'))
@@ -31,7 +31,7 @@
                     </div>
                     <!-- mobile_02 -->
                     <div class="form-group col-md-3">
-                        <label for="mobile_02">Mobile 02</label>
+                        <label for="mobile_02">Applicant Mobile 02</label>
                         <input type="number" class="form-control" id="mobile_02" name="mobile_02"
                                placeholder="secondery mobile" value="{{ old('mobile_02') }}">
                         @if($errors->has('mobile_02'))
@@ -40,7 +40,7 @@
                     </div>
                     <!-- email -->
                     <div class="form-group col-md-3">
-                        <label for="email">Email</label>
+                        <label for="email">Applicant Email</label>
                         <input type="email" class="form-control" id="email" name="email" placeholder="email"
                                value="{{ old('email') }}">
                         @if($errors->has('email'))
@@ -92,7 +92,7 @@
                     </div>
                     <!-- disabilities -->
                     <div class="form-group col-md-3">
-                        <label for="disabilities">Disabilities</label>
+                        <label for="disabilities">Applicant Disabilities</label>
                         <select id="disabilities" class="form-control" name="disabilities"
                                 value="{{ old('disabilities') }}">
                             <option selected>Select</option>
@@ -125,7 +125,7 @@
                     </div>
                     <!-- zones -->
                     <div class="form-group col-md-3">
-                        <label for="zone">Zone</label>
+                        <label for="zone">GSP Zone</label>
                         <select id="zone" class="form-control" name="zone" value="{{ old('zone') }}">
                             <option selected>Select</option>
                             @foreach ($data['zones'] as $item)
@@ -172,7 +172,7 @@
                     </div>
                     <!-- father_disability -->
                     <div class="form-group col-md-3">
-                        <label for="father_disability">Father Disabilities</label>
+                        <label for="father_disability">Father Disability</label>
                         <select id="father_disability" class="form-control" name="father_disability"
                                 value="{{ old('father_disability') }}">
                             <option selected>Select</option>
@@ -220,7 +220,7 @@
                     </div>
                     <!-- mother_disability -->
                     <div class="form-group col-md-3">
-                        <label for="mother_disability">Mother Disabilities</label>
+                        <label for="mother_disability">Mother Disability</label>
                         <select id="mother_disability" class="form-control" name="mother_disability"
                                 value="{{ old('mother_disability') }}">
                             <option selected>Select</option>
@@ -235,9 +235,9 @@
                     </div>
                     <!-- guardian_number -->
                     <div class="form-group col-md-2">
-                        <label for="guardian_number">Guardian Number</label>
+                        <label for="guardian_number">Guardian Mobile Number</label>
                         <input type="text" class="form-control" id="guardian_number" name="guardian_number"
-                               placeholder="nid" value="{{ old('guardian_number') }}">
+                               placeholder="0" value="{{ old('guardian_number') }}">
                         @if($errors->has('guardian_number'))
                             <div class="text-danger">{{ $errors->first('guardian_number') }}</div>
                         @endif
@@ -253,25 +253,25 @@
                     </div>
                     <!-- other_disability -->
                     <div class="form-group col-md-3">
-                        <label for="other_disability">Other Disability</label>
+                        <label for="other_disability"># of Other Disability</label>
                         <input type="name" class="form-control" id="other_disability" name="other_disability"
-                               placeholder="other_disability" value="{{ old('other_disability') }}">
+                               placeholder="0" value="{{ old('other_disability') }}">
                         @if($errors->has('other_disability'))
                             <div class="text-danger">{{ $errors->first('other_disability') }}</div>
                         @endif
                     </div>
                     <!-- thana_police_station -->
                     <div class="form-group col-md-3">
-                        <label for="thana_police_station">thana_police_station</label>
+                        <label for="thana_police_station">Thana</label>
                         <input type="name" class="form-control" id="thana_police_station" name="thana_police_station"
-                               placeholder="thana_police_station" value="{{ old('thana_police_station') }}">
+                               placeholder="Applicant Thana or Upazilla" value="{{ old('thana_police_station') }}">
                         @if($errors->has('thana_police_station'))
                             <div class="text-danger">{{ $errors->first('thana_police_station') }}</div>
                         @endif
                     </div>
                     <!-- district -->
                     <div class="form-group col-md-3">
-                        <label for="district">district</label>
+                        <label for="district">Applicant Home District</label>
                         <input type="name" class="form-control" id="district" name="district" placeholder="district"
                                value="{{ old('district') }}">
                         @if($errors->has('district'))
@@ -280,8 +280,8 @@
                     </div>
                     <!-- school -->
                     <div class="form-group col-md-3">
-                        <label for="school">school</label>
-                        <input type="name" class="form-control" id="school" name="school" placeholder="school"
+                        <label for="school">School Name</label>
+                        <input type="name" class="form-control" id="school" name="school" placeholder="School"
                                value="{{ old('school') }}">
                         @if($errors->has('school'))
                             <div class="text-danger">{{ $errors->first('school') }}</div>
@@ -289,8 +289,8 @@
                     </div>
                     <!-- college -->
                     <div class="form-group col-md-3">
-                        <label for="college">college</label>
-                        <input type="name" class="form-control" id="college" name="college" placeholder="college"
+                        <label for="college">College Name</label>
+                        <input type="name" class="form-control" id="college" name="college" placeholder="College"
                                value="{{ old('college') }}">
                         @if($errors->has('college'))
                             <div class="text-danger">{{ $errors->first('college') }}</div>
@@ -298,44 +298,44 @@
                     </div>
                     <!-- monthly_income -->
                     <div class="form-group col-md-3">
-                        <label for="monthly_income">monthly_income</label>
+                        <label for="monthly_income">Monthly Income</label>
                         <input type="name" class="form-control" id="monthly_income" name="monthly_income"
-                               placeholder="monthly_income" value="{{ old('monthly_income') }}">
+                               placeholder="0" value="{{ old('monthly_income') }}">
                         @if($errors->has('monthly_income'))
                             <div class="text-danger">{{ $errors->first('monthly_income') }}</div>
                         @endif
                     </div>
                     <!-- monthly_expense -->
                     <div class="form-group col-md-3">
-                        <label for="monthly_expense">monthly_expense</label>
+                        <label for="monthly_expense">Monthly Expense</label>
                         <input type="name" class="form-control" id="monthly_expense" name="monthly_expense"
-                               placeholder="monthly_expense" value="{{ old('monthly_expense') }}">
+                               placeholder="0" value="{{ old('monthly_expense') }}">
                         @if($errors->has('monthly_expense'))
                             <div class="text-danger">{{ $errors->first('monthly_expense') }}</div>
                         @endif
                     </div>
                     <!-- family_asset -->
                     <div class="form-group col-md-3">
-                        <label for="family_asset">family_asset</label>
+                        <label for="family_asset">Family Asset</label>
                         <input type="name" class="form-control" id="family_asset" name="family_asset"
-                               placeholder="family_asset" value="{{ old('family_asset') }}">
+                               placeholder="0" value="{{ old('family_asset') }}">
                         @if($errors->has('family_asset'))
                             <div class="text-danger">{{ $errors->first('family_asset') }}</div>
                         @endif
                     </div>
                     <!-- family_monthly_income -->
                     <div class="form-group col-md-3">
-                        <label for="family_monthly_income">family_monthly_income</label>
+                        <label for="family_monthly_income">Family Monthly Income</label>
                         <input type="name" class="form-control" id="family_monthly_income" name="family_monthly_income"
-                               placeholder="family_monthly_income" value="{{ old('family_monthly_income') }}">
+                               placeholder="0" value="{{ old('family_monthly_income') }}">
                         @if($errors->has('family_monthly_income'))
                             <div class="text-danger">{{ $errors->first('family_monthly_income') }}</div>
                         @endif
                     </div>
                     <!-- hsc_year -->
                     <div class="form-group col-md-3">
-                        <label for="hsc_year">hsc_year</label>
-                        <input type="name" class="form-control" id="hsc_year" name="hsc_year" placeholder="hsc_year"
+                        <label for="hsc_year">HSC Year</label>
+                        <input type="name" class="form-control" id="hsc_year" name="hsc_year" placeholder="2020"
                                value="{{ old('hsc_year') }}">
                         @if($errors->has('hsc_year'))
                             <div class="text-danger">{{ $errors->first('hsc_year') }}</div>
@@ -343,26 +343,26 @@
                     </div>
                     <!-- hsc_result -->
                     <div class="form-group col-md-3">
-                        <label for="hsc_result">hsc_result</label>
+                        <label for="hsc_result">HSC Result</label>
                         <input type="name" class="form-control" id="hsc_result" name="hsc_result"
-                               placeholder="hsc_result" value="{{ old('hsc_result') }}">
+                               placeholder="5.00" value="{{ old('hsc_result') }}">
                         @if($errors->has('hsc_result'))
                             <div class="text-danger">{{ $errors->first('hsc_result') }}</div>
                         @endif
                     </div>
                     <!-- ssc_result -->
                     <div class="form-group col-md-3">
-                        <label for="ssc_result">ssc_result</label>
+                        <label for="ssc_result">SSC Result</label>
                         <input type="name" class="form-control" id="ssc_result" name="ssc_result"
-                               placeholder="ssc_result" value="{{ old('ssc_result') }}">
+                               placeholder="5.00" value="{{ old('ssc_result') }}">
                         @if($errors->has('ssc_result'))
                             <div class="text-danger">{{ $errors->first('ssc_result') }}</div>
                         @endif
                     </div>
                     <!-- older_age -->
                     <div class="form-group col-md-3">
-                        <label for="older_age">older_age</label>
-                        <input type="name" class="form-control" id="older_age" name="older_age" placeholder="older_age"
+                        <label for="older_age"># of member 65+</label>
+                        <input type="name" class="form-control" id="older_age" name="older_age" placeholder="0"
                                value="{{ old('older_age') }}">
                         @if($errors->has('older_age'))
                             <div class="text-danger">{{ $errors->first('older_age') }}</div>
@@ -370,8 +370,8 @@
                     </div>
                     <!-- class1to8 -->
                     <div class="form-group col-md-3">
-                        <label for="class1to8">class1to8</label>
-                        <input type="name" class="form-control" id="class1to8" name="class1to8" placeholder="class1to8"
+                        <label for="class1to8"># of member Class I-VIII</label>
+                        <input type="name" class="form-control" id="class1to8" name="class1to8" placeholder="0"
                                value="{{ old('class1to8') }}">
                         @if($errors->has('class1to8'))
                             <div class="text-danger">{{ $errors->first('class1to8') }}</div>
@@ -379,17 +379,17 @@
                     </div>
                     <!-- class9to12_hifj -->
                     <div class="form-group col-md-3">
-                        <label for="class9to12_hifj">class9to12_hifj</label>
+                        <label for="class9to12_hifj"># of member Class IX-XII, Hifj, Diploma</label>
                         <input type="name" class="form-control" id="class9to12_hifj" name="class9to12_hifj"
-                               placeholder="class9to12_hifj" value="{{ old('class9to12_hifj') }}">
+                               placeholder="0" value="{{ old('class9to12_hifj') }}">
                         @if($errors->has('class9to12_hifj'))
                             <div class="text-danger">{{ $errors->first('class9to12_hifj') }}</div>
                         @endif
                     </div>
                     <!-- undergrad -->
                     <div class="form-group col-md-3">
-                        <label for="undergrad">undergrad</label>
-                        <input type="name" class="form-control" id="undergrad" name="undergrad" placeholder="undergrad"
+                        <label for="undergrad"># of member undergrad</label>
+                        <input type="name" class="form-control" id="undergrad" name="undergrad" placeholder="0"
                                value="{{ old('undergrad') }}">
                         @if($errors->has('undergrad'))
                             <div class="text-danger">{{ $errors->first('undergrad') }}</div>
