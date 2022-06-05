@@ -67,7 +67,8 @@ class ApplicantController extends Controller
             return redirect(route('applicant.create'))->withErrors($validator)->withInput();
         }
 
-        dd(Applicant::create($validator->validated()));
+        $applicant = Applicant::create($validator->validated());
+        return redirect(route('applicant.create'))->with('message', $applicant->applicant_name . ' has been successfully created.');
     }
 
     public function create()
@@ -82,18 +83,18 @@ class ApplicantController extends Controller
         ];
         return view('add_applicant', compact('data'));
     }
+
     public function importApplicant(Request $request)
     {
         $request->validate([
-            'file'=> 'required','mimes:csv'
+            'file' => 'required', 'mimes:csv'
         ]);
         $file = $request->file('file');
 
-       try {
-            $import=new ApplicantImport;
+        try {
+            $import = new ApplicantImport;
             $import->import($file);
-        }
-        catch(\Exception $e){
+        } catch (\Exception $e) {
             return back()->withErrors($e->getMessage());
         }
 
@@ -103,9 +104,10 @@ class ApplicantController extends Controller
     public function exportApplicant()
     {
 //        $file= 'gsp_'.Carbon::now();
-       return Excel::download(new ApplicantExport,  'gsp.xlsx');
+        return Excel::download(new ApplicantExport, 'gsp.xlsx');
 
     }
+
     public function show(Applicant $applicant)
     {
         return view('show', compact('applicant'));
@@ -120,10 +122,13 @@ class ApplicantController extends Controller
     {
         //
     }
-    public function deleteAll(){
+
+    public function deleteAll()
+    {
         $data = Applicant::query()->delete();
         return back()->withStatus('All applicant delete successfully');
     }
+
     public function destroy(Applicant $applicant)
     {
         //

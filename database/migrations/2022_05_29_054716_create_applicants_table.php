@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->id();
             $table->enum('zone', getZones());
             $table->string('zone_code');
-            $table->string('email')->nullable()->unique();
+            $table->string('email')->nullable();
             $table->string('institute');
             $table->string('department');
             $table->string('applicant_name');
@@ -46,7 +46,7 @@ return new class extends Migration {
             $table->integer('class1to8');
             $table->integer('class9to12_hifj');
             $table->integer('undergrad');
-            $table->string('justification')->nullable();
+            $table->text('justification')->nullable();
             $table->string('image')->nullable();
             $table->boolean('is_processed')->default(false);
             $table->string('total_mark')->nullable();

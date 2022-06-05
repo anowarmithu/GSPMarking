@@ -61,17 +61,18 @@ class HomeController extends Controller
                 } else if ($expense_diff > 200) {
                     $total_mark++;
                 }
+//                dd($total_mark);
                 //Parents living status
                 $parent_living_mark = 0;
-                if ('Died' === $item->mother_living_status) {
+                if ('Late' === $item->mother_living_status) {
                     $parent_living_mark += 3;
                 } else if ('Alive' !== $item->mother_living_status) {
                     $parent_living_mark += 5;
                 }
-                if ('Died' === $item->father_living_status) {
+                if ('Late' === $item->father_living_status) {
                     $parent_living_mark += 7;
                 } else if ('Alive' !== $item->father_living_status) {
-                    $parent_living_mark += 3;
+                    $parent_living_mark += 5;
                 }
                 $total_mark += min($parent_living_mark, 10);
                 //Dependents
@@ -91,13 +92,13 @@ class HomeController extends Controller
                 $total_mark += min($dependent_mark, 10);
                 //Disability
                 $disability_mark = 0;
-                if ('None' !== $item->disabilities) {
+                if ('No' !== $item->disabilities) {
                     $disability_mark += 10;
                 }
-                if ('None' !== $item->father_disability) {
+                if ('No' !== $item->father_disability) {
                     $disability_mark += 7;
                 }
-                if ('None' !== $item->mother_disability) {
+                if ('No' !== $item->mother_disability) {
                     $disability_mark += 5;
                 }
                 if ($item->other_disability > 0) {
@@ -119,7 +120,7 @@ class HomeController extends Controller
                     $total_mark += 3;
                 } else if ($item->family_asset <= 399_999) {
                     $total_mark += 2;
-                } else if ($item->family_asset <= 449_999) {
+                } else if ($item->family_asset <= 499_999) {
                     $total_mark += 1;
                 }
                 //Family Monthly Income

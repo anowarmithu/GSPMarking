@@ -3,14 +3,15 @@
 if (!function_exists('getDisabilities')) {
     function getDisabilities(): array
     {
-        return ['None', 'Speech', 'Vision', 'Hearing', 'Physical', 'Mental', 'Autistic', 'Other'];
+        return ['No', 'Mobility and Physical Impairments', 'Vision Disability', 'Hearing Disability', 'Psychological Disorders', 'Other Major Disability'];
+//        return ['None', 'Speech', 'Vision', 'Hearing', 'Physical', 'Mental', 'Autistic', 'Other'];
     }
 }
 
 if (!function_exists('getLivingStatuses')) {
     function getLivingStatuses(): array
     {
-        return ['Alive', 'Died', 'Separated', 'Divorced'];
+        return ['Alive', 'Late', 'Separated from Family'];
     }
 }
 
